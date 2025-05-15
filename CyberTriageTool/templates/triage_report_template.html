@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Triage Report</title>
+</head>
+<body>
+    <h1>Cyber Triage Report</h1>
+
+    <h2>🖥️ System Information</h2>
+    <pre>{{ system_info | tojson(indent=2) }}</pre>
+
+    <h2>📘 Event Log Summary</h2>
+    <ul>
+    {% for log in logs %}
+        <li>{{ log.timestamp }} - Event ID {{ log.event_id }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>🦠 Malware Scan Results</h2>
+    <ul>
+    {% for item in vt_results %}
+        <li>{{ item.file }} - {{ item.virustotal }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>📅 Timeline</h2>
+    <ul>
+    {% for event in timeline %}
+        <li>{{ event.time }} - {{ event.event }}</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
